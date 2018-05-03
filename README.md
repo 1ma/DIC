@@ -1,5 +1,7 @@
 # uma/container
 
+[![Build Status](https://travis-ci.org/1ma/DIC.svg?branch=master)](https://travis-ci.org/1ma/DIC) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/1ma/DIC/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/1ma/DIC/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/1ma/DIC/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/1ma/DIC/?branch=master)
+
 A PSR-11 container focused on human readability and comprehension.
 
 
