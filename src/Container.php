@@ -66,7 +66,7 @@ class Container implements ContainerInterface
      *
      * @throws NotFoundExceptionInterface No entry was found for **this** identifier.
      */
-    public function resolved($id): bool
+    public function resolved(string $id): bool
     {
         if (!$this->has($id)) {
             throw new class extends \LogicException implements NotFoundExceptionInterface {};
