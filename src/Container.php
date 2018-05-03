@@ -31,7 +31,7 @@ class Container implements ContainerInterface
             throw new class extends \LogicException implements NotFoundExceptionInterface {};
         }
 
-        if (\is_callable($this->container[$id])) {
+        if ($this->container[$id] instanceof \Closure) {
             $this->container[$id] = \call_user_func($this->container[$id], $this);
         }
 
@@ -72,6 +72,6 @@ class Container implements ContainerInterface
             throw new class extends \LogicException implements NotFoundExceptionInterface {};
         }
 
-        return false === \is_callable($this->container[$id]);
+        return !$this->container[$id] instanceof \Closure;
     }
 }

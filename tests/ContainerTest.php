@@ -70,4 +70,19 @@ class ContainerTest extends TestCase
         $sut = new Container();
         $sut->resolved('foo');
     }
+
+    public function testInvokableObjectIsNotRunAtRetrieval(): void
+    {
+        $sut = new Container();
+        $sut->set('foo', $invokable = new class {
+            public function __invoke(): string
+            {
+                return 'bar';
+            }
+        });
+
+        self::assertTrue($sut->resolved('foo'));
+        self::assertNotSame('bar', $retrieved = $sut->get('foo'));
+        self::assertSame($invokable, $retrieved);
+    }
 }
