@@ -1,8 +1,15 @@
-# uma/container
+# uma/dic
 
 [![Build Status](https://travis-ci.org/1ma/DIC.svg?branch=master)](https://travis-ci.org/1ma/DIC) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/1ma/DIC/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/1ma/DIC/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/1ma/DIC/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/1ma/DIC/?branch=master)
 
 A PSR-11 container focused on human readability and comprehension.
+
+
+## Installation
+
+```
+$ composer require uma/dic:^1.0
+```
 
 
 ## Design Goals
@@ -22,7 +29,7 @@ a Dependency Injection Container involves these two operations.
 
 The `Container` class has a `set` method and also accepts an optional array of type `string => mixed` in its constructor.
 
-Moreover, definitions have to be are overridable.
+Moreover, definitions have to be overridable.
 
 ```php
 $container = new \UMA\DIC\Container([
@@ -32,7 +39,7 @@ $container = new \UMA\DIC\Container([
 
 $container->set('foo', 'bar');
 $container->set('foo', 'baz');
-var_dump($container->get('foo');
+var_dump($container->get('foo'));
 // 'baz'
 ```
 
