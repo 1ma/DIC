@@ -69,7 +69,7 @@ $container->set('db', function(\UMA\DIC\Container $c): \PDO {
 var_dump($container->resolved('db'));
 // false
 
-$pdo = $container->get('pdo');
+$pdo = $container->get('db');
 
 var_dump($container->resolved('db'));
 // true
