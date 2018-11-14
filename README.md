@@ -16,7 +16,7 @@ $ composer require uma/dic:^1.0
 
 ### Simplicity
 
-The whole package is made of 1 class and 1 interface, totaling 13 effective LoC according to PHPUnit.
+A dependency injection container is a rather simple concept and its implementation should be simple, too.
 
 ### PSR-11 compliance
 
@@ -24,12 +24,14 @@ It must implement the PSR-11 spec, and be usable wherever a PSR-11 container is 
 
 ### Setter
 
-It must have a standard way to add dependencies to the container as well as retrieve them, setting up
-a Dependency Injection Container involves these two operations.
+It must have a standard way to add dependencies to the container as well as retrieve them. Using
+a Dependency Injection Container involves these two operations, not just getting them (I'm looking at you PSR-11).
 
-The `Container` class has a `set` method and also accepts an optional array of type `string => mixed` in its constructor.
+To that end the `Container` class has a `set` method and also accepts an optional array of type
+`string => mixed` in its constructor, which is equivalent to calling `set($id, $entry)` with each of
+its key-value pairs.
 
-Moreover, definitions have to be overridable.
+Moreover, definitions have to be overridable:
 
 ```php
 $container = new \UMA\DIC\Container([
@@ -45,10 +47,10 @@ var_dump($container->get('foo'));
 
 ### Lazy loading
 
-It must be possible to register lazy services. These are services that are not resolved until they are
-actually retrieved, and may depend upon other services.
+It must be possible to register lazy services. These are services that are not instantiated until they are
+actually retrieved for the first time.
 
-Lazy services are implemented with anonymous functions. Whenever the container is asked for a service
+This library implements lazy services with anonymous functions. Whenever the container is asked for a service
 that is actually an anonymous function, that function is executed (passing the container itself as the
 first parameter) and the result is stored under the same id where the anonymous function used to be.
 
@@ -60,8 +62,8 @@ called (or not) on test code.
 $container = new \UMA\DIC\Container();
 $container->set('dsn', '...');
 
-// You can also typehint against \Psr\Container\ContainerInterface
-// only, or simply omit the argument altogether
+// A database connection won't be made until/unless
+// the 'db' service is fetched from the container
 $container->set('db', function(\UMA\DIC\Container $c): \PDO {
   return new \PDO($c->get('dsn'));
 });

@@ -8,6 +8,7 @@
         "psr/container": "^1.0"
     },
     "require-dev": {
+        "phpmetrics/phpmetrics": "^2.4",
         "phpunit/phpunit": "^7.0"
     },
     "autoload": {
@@ -21,6 +22,13 @@
         }
     },
     "scripts": {
-        "test": "php vendor/bin/phpunit"
+        "test": "php vendor/bin/phpunit --testdox",
+        "metrics": [
+            "@test",
+            "vendor/bin/phpmetrics --junit=./build/phpunit/junit.xml --report-html=./build/phpmetrics ."
+        ]
+    },
+    "config": {
+        "sort-packages": true
     }
 }
