@@ -27,11 +27,7 @@ class Container implements ContainerInterface
      */
     public function get($id)
     {
-        if (!$this->has($id)) {
-            throw new class extends \LogicException implements NotFoundExceptionInterface {};
-        }
-
-        if ($this->container[$id] instanceof \Closure) {
+        if (!$this->resolved($id)) {
             $this->container[$id] = \call_user_func($this->container[$id], $this);
         }
 
