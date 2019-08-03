@@ -9,7 +9,7 @@
     },
     "require-dev": {
         "phpmetrics/phpmetrics": "^2.4",
-        "phpunit/phpunit": "^7.0"
+        "phpunit/phpunit": "^7.5"
     },
     "autoload": {
         "psr-4": {
