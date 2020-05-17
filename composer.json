@@ -8,7 +8,7 @@
         "psr/container": "^1.0"
     },
     "require-dev": {
-        "phpmetrics/phpmetrics": "^2.4",
+        "phpmetrics/phpmetrics": "^2.6",
         "phpunit/phpunit": "^7.5"
     },
     "autoload": {
@@ -20,6 +20,9 @@
         "psr-4": {
             "UMA\\DIC\\Tests\\": "tests/"
         }
+    },
+    "provide": {
+        "psr/container-implementation": "^1.0"
     },
     "scripts": {
         "test": "php vendor/bin/phpunit --testdox",
