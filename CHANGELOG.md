@@ -1,3 +1,7 @@
+### [2.0.1] - 2021-01-21
+
+  * Fixed PHP string requirement in composer.json
+
 ### [2.0.0] - 2020-12-24
 
   * Raised minimum required version to PHP 7.3 and started to test lib for PHP 7.4 and 8.0
@@ -20,6 +24,7 @@
 
   * Initial release.
 
+[2.0.1]: https://github.com/1ma/DIC/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/1ma/DIC/compare/v1.0.3...v2.0.0
 [1.0.3]: https://github.com/1ma/DIC/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/1ma/DIC/compare/v1.0.1...v1.0.2
