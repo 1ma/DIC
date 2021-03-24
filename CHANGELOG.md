@@ -1,12 +1,16 @@
+### [3.0.0] - 2021-03-24
+
+  * (Breaking Change) Bump `psr/container` requirement to `^2.0`
+
 ### [2.0.1] - 2021-01-21
 
   * Fixed PHP string requirement in composer.json
 
 ### [2.0.0] - 2020-12-24
 
-  * Raised minimum required version to PHP 7.3 and started to test lib for PHP 7.4 and 8.0
+  * (Breaking Change) Raised minimum required version to PHP 7.3 and started to test lib for PHP 7.4 and 8.0
   * Updated development dependencies
-  * Decomissioned Travis CI in favor of Github Actions
+  * Decommissioned Travis CI in favor of Github Actions
 
 ### [1.0.3] - 2020-05-17
 

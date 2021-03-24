@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace UMA\DIC;
 
+use Closure;
+use LogicException;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
+use function array_key_exists;
+use function call_user_func;
 
 class Container implements ContainerInterface
 {
@@ -25,10 +29,10 @@ class Container implements ContainerInterface
     /**
      * {@inheritdoc}
      */
-    public function get($id)
+    public function get(string $id)
     {
         if (!$this->resolved($id)) {
-            $this->container[$id] = \call_user_func($this->container[$id], $this);
+            $this->container[$id] = call_user_func($this->container[$id], $this);
         }
 
         return $this->container[$id];
@@ -37,9 +41,9 @@ class Container implements ContainerInterface
     /**
      * {@inheritdoc}
      */
-    public function has($id)
+    public function has(string $id): bool
     {
-        return \array_key_exists($id, $this->container);
+        return array_key_exists($id, $this->container);
     }
 
     /**
@@ -65,9 +69,9 @@ class Container implements ContainerInterface
     public function resolved(string $id): bool
     {
         if (!$this->has($id)) {
-            throw new class extends \LogicException implements NotFoundExceptionInterface {};
+            throw new class extends LogicException implements NotFoundExceptionInterface {};
         }
 
-        return !$this->container[$id] instanceof \Closure;
+        return !$this->container[$id] instanceof Closure;
     }
 }
