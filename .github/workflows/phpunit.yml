@@ -33,3 +33,14 @@ jobs:
         run: |
           composer install
           composer test
+
+  php81:
+    runs-on: ubuntu-latest
+    container: 1maa/php-dev:8.1
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Run tests in PHP 8.1
+        run: |
+          composer install
+          composer test
