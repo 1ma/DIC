@@ -8,7 +8,7 @@ A PSR-11 container focused on human readability and comprehension.
 ## Installation
 
 ```
-$ composer require uma/dic:^1.0
+$ composer require uma/dic:^3.0
 ```
 
 

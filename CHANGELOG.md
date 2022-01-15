@@ -1,3 +1,7 @@
+### [3.0.1] - 2022-01-15
+
+  * Allow PHP 8.1
+
 ### [3.0.0] - 2021-03-24
 
   * (Breaking Change) Bump `psr/container` requirement to `^2.0`
@@ -28,6 +32,8 @@
 
   * Initial release.
 
+[3.0.1]: https://github.com/1ma/DIC/compare/v3.0.0...v3.0.1
+[3.0.0]: https://github.com/1ma/DIC/compare/v2.0.1...v3.0.0
 [2.0.1]: https://github.com/1ma/DIC/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/1ma/DIC/compare/v1.0.3...v2.0.0
 [1.0.3]: https://github.com/1ma/DIC/compare/v1.0.2...v1.0.3
