@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace UMA\DIC\Tests;
 
 use PHPUnit\Framework\TestCase;
+use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use UMA\DIC\Container;
 use UMA\DIC\ServiceProvider;
@@ -43,7 +44,7 @@ class ContainerTest extends TestCase
     {
         $sut = new Container([
             'foo' => 'bar',
-            'baz' => static function (Container $c): string {
+            'baz' => static function (ContainerInterface $c): string {
                 return 'qux'.$c->get('foo');
             },
         ]);
@@ -84,5 +85,27 @@ class ContainerTest extends TestCase
         self::assertTrue($sut->resolved('foo'));
         self::assertNotSame('bar', $retrieved = $sut->get('foo'));
         self::assertSame($invokable, $retrieved);
+    }
+
+    public function testFactoryService(): void
+    {
+        $sut = new Container();
+
+        $sut->set('foo', static function (): \stdClass {
+            return new \stdClass();
+        });
+
+        $sut->factory('bar', static function (): \stdClass {
+            return new \stdClass();
+        });
+
+        self::assertFalse($sut->resolved('foo'));
+        self::assertFalse($sut->resolved('bar'));
+
+        self::assertSame($sut->get('foo'), $sut->get('foo'));
+        self::assertNotSame($sut->get('bar'), $sut->get('bar'));
+
+        self::assertTrue($sut->resolved('foo'));
+        self::assertFalse($sut->resolved('bar'));
     }
 }

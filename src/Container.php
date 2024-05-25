@@ -10,6 +10,7 @@ use Psr\Container\NotFoundExceptionInterface;
 final class Container implements ContainerInterface
 {
     private array $container;
+    private array $factories;
 
     /**
      * @param array $entries array of string => mixed
@@ -17,12 +18,19 @@ final class Container implements ContainerInterface
     public function __construct(array $entries = [])
     {
         $this->container = $entries;
+        $this->factories = [];
     }
 
-    public function get(string $id)
+    public function get(string $id): mixed
     {
         if (!$this->resolved($id)) {
-            $this->container[$id] = \call_user_func($this->container[$id], $this);
+            $entry = \call_user_func($this->container[$id], $this);
+
+            if (\array_key_exists($id, $this->factories)) {
+                return $entry;
+            }
+
+            $this->container[$id] = $entry;
         }
 
         return $this->container[$id];
@@ -33,9 +41,15 @@ final class Container implements ContainerInterface
         return \array_key_exists($id, $this->container);
     }
 
-    public function set(string $id, $entry): void
+    public function set(string $id, mixed $entry): void
     {
         $this->container[$id] = $entry;
+    }
+
+    public function factory(string $id, \Closure $factory): void
+    {
+        $this->factories[$id] = true;
+        $this->set($id, $factory);
     }
 
     public function register(ServiceProvider $provider): void
@@ -46,6 +60,8 @@ final class Container implements ContainerInterface
     /**
      * Returns whether a given service has already been resolved
      * into its final value, or is still a callable.
+     *
+     * Always returns false for factory services, as they never resolve.
      *
      * @throws NotFoundExceptionInterface
      */

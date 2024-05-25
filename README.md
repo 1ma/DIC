@@ -8,7 +8,7 @@ A PSR-11 container focused on human readability and comprehension.
 ## Installation
 
 ```
-$ composer require uma/dic:^3.0
+$ composer require uma/dic:^4.0
 ```
 
 
@@ -31,10 +31,10 @@ To that end the `Container` class has a `set` method and also accepts an optiona
 `string => mixed` in its constructor, which is equivalent to calling `set($id, $entry)` with each of
 its key-value pairs.
 
-Moreover, definitions have to be overridable:
+Moreover, definitions have to be overridable, because definition overrides are a common approach in testing contexts.
 
 ```php
-$container = new \UMA\DIC\Container([
+$container = new UMA\DIC\Container([
   'host' => 'localhost',
   'port' => 8080
 ]);
@@ -59,12 +59,12 @@ function or not. This can be useful when you need to assert whether a given serv
 called (or not) on test code.
 
 ```php
-$container = new \UMA\DIC\Container();
+$container = new UMA\DIC\Container();
 $container->set('dsn', '...');
 
 // A database connection won't be made until/unless
 // the 'db' service is fetched from the container
-$container->set('db', function(\UMA\DIC\Container $c): \PDO {
+$container->set('db', static function(Psr\Container\ContainerInterface $c): \PDO {
   return new \PDO($c->get('dsn'));
 });
 
@@ -86,9 +86,40 @@ their `provide` method. They are then expected to register sets of related servi
 concept is borrowed from [Pimple](https://github.com/silexphp/Pimple).
 
 ```php
-$container = new \UMA\DIC\Container();
-$container->register(new \Project\DIC\Repositories());
-$container->register(new \Project\DIC\Controllers());
-$container->register(new \Project\DIC\Routes());
-$container->register(new \Project\DIC\DevRoutes());
+$container = new UMA\DIC\Container();
+$container->register(new Project\DIC\Repositories());
+$container->register(new Project\DIC\Controllers());
+$container->register(new Project\DIC\Routes());
+$container->register(new Project\DIC\DebugRoutes());
+```
+
+### Service Factories
+
+In a few niche cases it can be desirable to create a new instance of the service every time it's requested from the container.
+
+Like lazy loading, service factories are implemented using anonymous functions.
+However, they are registered with the `factory` method instead of `set`.
+
+```php
+$container = new UMA\DIC\Container();
+
+// Normal lazy loaded service. Will always return the
+// same object instance after running the Closure once.
+$container->set('foo', static function(): \stdClass {
+  return new \stdClass();
+});
+
+// Factory service. The second argument must be a Closure.
+// The closure will run every time the service is requested.
+$container->factory('bar', static function(): \stdClass {
+  return new \stdClass();
+});
+
+// foo is always the same object instance.
+var_dump($container->get('foo') === $container->get('foo'));
+// true
+
+// bar is a different object instance each time it's requested.
+var_dump($container->get('bar') === $container->get('bar'));
+// false
 ```
