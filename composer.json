@@ -4,12 +4,14 @@
     "license": "MIT",
     "type": "library",
     "require": {
-        "php": "^7.3.0 || ^7.4.0 || ^8.0.0 || ^8.1.0",
+        "php": "~8.2.0 || ~8.3.0",
         "psr/container": "^2.0"
     },
     "require-dev": {
-        "phpmetrics/phpmetrics": "^2.7",
-        "phpunit/phpunit": "^9.5"
+        "friendsofphp/php-cs-fixer": "^3.57",
+        "phpmetrics/phpmetrics": "^3.0-rc",
+        "phpunit/phpunit": "^11.1",
+        "scrutinizer/ocular": "^1.9"
     },
     "autoload": {
         "psr-4": {
@@ -26,6 +28,7 @@
     },
     "scripts": {
         "test": "php vendor/bin/phpunit",
+        "lint": "@php vendor/bin/php-cs-fixer fix -v",
         "metrics": [
             "@test",
             "vendor/bin/phpmetrics --junit=./build/junit.xml --report-html=./build/metrics ."

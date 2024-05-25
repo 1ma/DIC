@@ -25,7 +25,7 @@ class ContainerTest extends TestCase
 
     public function testProvider(): void
     {
-        $provider = new class implements ServiceProvider {
+        $provider = new class() implements ServiceProvider {
             public function provide(Container $c): void
             {
                 $c->set('foo', 'bar');
@@ -43,9 +43,9 @@ class ContainerTest extends TestCase
     {
         $sut = new Container([
             'foo' => 'bar',
-            'baz' => function(Container $c): string {
-                return 'qux' . $c->get('foo');
-            }
+            'baz' => static function (Container $c): string {
+                return 'qux'.$c->get('foo');
+            },
         ]);
 
         self::assertTrue($sut->resolved('foo'));
@@ -74,7 +74,7 @@ class ContainerTest extends TestCase
     public function testInvokableObjectIsNotRunAtRetrieval(): void
     {
         $sut = new Container();
-        $sut->set('foo', $invokable = new class {
+        $sut->set('foo', $invokable = new class() {
             public function __invoke(): string
             {
                 return 'bar';

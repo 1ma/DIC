@@ -1,3 +1,9 @@
+### [4.0.0] - 2024-XX-XX
+
+  * Support PHP 8.2 and 8.3
+  * (Breaking Change) Bump minimum PHP version to 8.2
+  * (Breaking Change) Mark `Container` class as final
+
 ### [3.0.1] - 2022-01-15
 
   * Allow PHP 8.1
@@ -32,6 +38,7 @@
 
   * Initial release.
 
+[4.0.0]: https://github.com/1ma/DIC/compare/v3.0.1...v4.0.0
 [3.0.1]: https://github.com/1ma/DIC/compare/v3.0.0...v3.0.1
 [3.0.0]: https://github.com/1ma/DIC/compare/v2.0.1...v3.0.0
 [2.0.1]: https://github.com/1ma/DIC/compare/v2.0.0...v2.0.1
