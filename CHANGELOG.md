@@ -1,8 +1,9 @@
-### [4.0.0] - 2024-XX-XX
+### [4.0.0] - 2024-05-25
 
   * Support PHP 8.2 and 8.3
   * (Breaking Change) Bump minimum PHP version to 8.2
   * (Breaking Change) Mark `Container` class as final
+  * New feature: Service Factories
 
 ### [3.0.1] - 2022-01-15
 
@@ -20,7 +21,7 @@
 
   * (Breaking Change) Raised minimum required version to PHP 7.3 and started to test lib for PHP 7.4 and 8.0
   * Updated development dependencies
-  * Decommissioned Travis CI in favor of Github Actions
+  * Decommissioned Travis CI in favor of GitHub Actions
 
 ### [1.0.3] - 2020-05-17
 
