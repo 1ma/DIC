@@ -20,5 +20,5 @@ jobs:
       - run: composer install
       - run: vendor/bin/php-cs-fixer check -v
       - run: composer test
-      - if: ${{ always() && matrix.php-version == '8.3' }}
+      - if: ${{ always() && matrix.php-version == '8.4' }}
         run: php vendor/bin/ocular code-coverage:upload --format=php-clover build/coverage.xml

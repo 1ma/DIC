@@ -26,7 +26,7 @@ class ContainerTest extends TestCase
 
     public function testProvider(): void
     {
-        $provider = new class() implements ServiceProvider {
+        $provider = new class implements ServiceProvider {
             public function provide(Container $c): void
             {
                 $c->set('foo', 'bar');
@@ -75,7 +75,7 @@ class ContainerTest extends TestCase
     public function testInvokableObjectIsNotRunAtRetrieval(): void
     {
         $sut = new Container();
-        $sut->set('foo', $invokable = new class() {
+        $sut->set('foo', $invokable = new class {
             public function __invoke(): string
             {
                 return 'bar';
