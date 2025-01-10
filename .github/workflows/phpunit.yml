@@ -6,10 +6,12 @@ jobs:
   test:
     name: Run tests in PHP ${{ matrix.php-version }}
     runs-on: ubuntu-latest
+    env:
+      PHP_CS_FIXER_IGNORE_ENV: 1
     strategy:
       fail-fast: false
       matrix:
-        php-version: ['8.2', '8.3']
+        php-version: ['8.2', '8.3', '8.4']
     steps:
       - uses: actions/checkout@v4
         with:
