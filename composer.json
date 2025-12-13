@@ -4,7 +4,7 @@
     "license": "MIT",
     "type": "library",
     "require": {
-        "php": "~8.2.0 || ~8.3.0 || ~8.4.0",
+        "php": "~8.2.0 || ~8.3.0 || ~8.4.0 || ~8.5.0",
         "psr/container": "^2.0"
     },
     "require-dev": {
