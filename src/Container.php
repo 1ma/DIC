@@ -23,17 +23,17 @@ final class Container implements ContainerInterface
 
     public function get(string $id): mixed
     {
-        if (!$this->resolved($id)) {
-            $entry = \call_user_func($this->container[$id], $this);
+        if ($this->resolved($id)) {
+            return $this->container[$id];
+        }
 
-            if (\array_key_exists($id, $this->factories)) {
-                return $entry;
-            }
+        $entry = \call_user_func($this->container[$id], $this);
 
+        if (!\array_key_exists($id, $this->factories)) {
             $this->container[$id] = $entry;
         }
 
-        return $this->container[$id];
+        return $entry;
     }
 
     public function has(string $id): bool
