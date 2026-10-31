@@ -1,6 +1,7 @@
 # uma/dic
 
 [![CI](https://github.com/1ma/DIC/actions/workflows/phpunit.yml/badge.svg)](https://github.com/1ma/DIC/actions)
+[![Coverage](https://coveralls.io/repos/github/1ma/DIC/badge.svg?branch=master)](https://coveralls.io/github/1ma/DIC?branch=master)
 
 A PSR-11 container focused on human readability and comprehension.
 
