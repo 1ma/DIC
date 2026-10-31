@@ -1,3 +1,7 @@
+### [4.3.0] - 2026-10-31
+
+  * Support PHP 8.6
+
 ### [4.2.0] - 2025-12-13
 
   * Support PHP 8.5
@@ -47,6 +51,7 @@
 
   * Initial release.
 
+[4.3.0]: https://github.com/1ma/DIC/compare/v4.2.0...v4.3.0
 [4.2.0]: https://github.com/1ma/DIC/compare/v4.1.0...v4.2.0
 [4.1.0]: https://github.com/1ma/DIC/compare/v4.0.0...v4.1.0
 [4.0.0]: https://github.com/1ma/DIC/compare/v3.0.1...v4.0.0

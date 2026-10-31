@@ -1,7 +1,6 @@
 # uma/dic
 
 [![CI](https://github.com/1ma/DIC/actions/workflows/phpunit.yml/badge.svg)](https://github.com/1ma/DIC/actions)
-[![Code Coverage](https://scrutinizer-ci.com/g/1ma/DIC/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/1ma/DIC/?branch=master)
 
 A PSR-11 container focused on human readability and comprehension.
 

@@ -4,14 +4,13 @@
     "license": "MIT",
     "type": "library",
     "require": {
-        "php": "~8.2.0 || ~8.3.0 || ~8.4.0 || ~8.5.0",
+        "php": "~8.2.0 || ~8.3.0 || ~8.4.0 || ~8.5.0 || ~8.6.0",
         "psr/container": "^2.0"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.93",
+        "friendsofphp/php-cs-fixer": "^3.95",
         "phpmetrics/phpmetrics": "^3.0-rc",
-        "phpunit/phpunit": "^11.5",
-        "uma/ocular": "^2.0"
+        "phpunit/phpunit": "^11.5"
     },
     "autoload": {
         "psr-4": {

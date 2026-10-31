@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-version: ['8.2', '8.3', '8.4', '8.5']
+        php-version: ['8.2', '8.3', '8.4', '8.5', '8.6']
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
@@ -22,5 +22,9 @@ jobs:
       - run: composer install
       - run: vendor/bin/php-cs-fixer check -v
       - run: composer test
-      - if: ${{ always() && matrix.php-version == '8.5' }}
-        run: php vendor/bin/ocular code-coverage:upload --format=php-clover build/coverage.xml
+      - name: Upload code coverage results to Coveralls
+        if: ${{ matrix.php-version == '8.6' }}
+        uses: coverallsapp/github-action@8d6379e14d29928660c4ba802d8e85393440b329 # v2.3.8
+        with:
+          file: build/coverage.xml
+          format: clover
